@@ -1,0 +1,53 @@
+<h2>Adding Articles</h2>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- <div class="pace  pace-inactive">
+	<div data-progress="99" data-progress-text="100%" style="width: 100%;" class="pace-progress">
+ 		<div class="pace-progress-inner"></div>
+	</div> -->
+<div class="pace-activity" style="margin: 15px 14px;"></div>
+
+         <!-- Page script -->
+<!-- 	<div class="wrapper" style="background-color: rgb(10, 35, 47); min-height: 657px;">
+		<div class="container" style="width: 421px;">
+			<div class="col-md-12" style="margin: 140px 0 0 0;">
+				<div class="box box-primary"> -->
+
+<a href="/list/">Back</a>
+<form role="form"  method="post" action="">{% csrf_token %}
+	<div class="box-body">
+		<div class="input-group" style="margin: 15px 14px;">
+		<!-- <span class="input-group-addon"><i class="fa fa-envelope"></i></span> -->
+			Title: <input type="text" placeholder="Title" name="title" id="title" required>
+	    </div>
+	    <div class="input-group" style="margin: 15px 14px;">
+	    <!-- <span class="input-group-addon"><i class="fa fa-circle-o text-blue"></i></span> -->
+		  Content: <input type="text" placeholder="Content" name="content" id="content" required><br><br>
+		</div>
+		<div class="input-group" style="margin: 15px 14px;">
+		<!-- <span class="input-group-addon"><i class="fa fa-files-o"></i></span> -->
+		  Author: <select name="author" id="author">
+			 		{% for i in author %}
+		 				 <option value="{{i.id}}" >{{i.name}}</option>
+			 		{% endfor %}
+					</select><br><br>
+		</div>
+		<div class="input-group" style="margin: 15px 14px;">
+		  <input type="submit">
+		 <a href="/list/"> <button>Cancel</button> </a>
+		 </div>
+	</div>
+</form>
+
+</div>                                
+            </div>
+        </div>
+    </div>
+</div>

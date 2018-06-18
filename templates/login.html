@@ -1,0 +1,151 @@
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                                
+                                <!-- form start -->
+<div class="pace  pace-inactive">
+	<div data-progress="99" data-progress-text="100%" style="width: 100%;" class="pace-progress">
+ 		<div class="pace-progress-inner"></div>
+	</div>
+<div class="pace-activity"></div>
+
+         <!-- Page script -->
+	<div class="wrapper" style="background-color: rgb(10, 35, 47); min-height: 657px;">
+		<div class="container" style="width: 421px;">
+			<div class="col-md-12" style="margin: 140px 0 0 0;">
+				<div class="box box-primary">
+            	   <!-- form start -->
+				<form role="form" name="login_form" id="login_form" method="post" action="">{% csrf_token %}
+					<!-- <input name="return" value="/Katerra/configurations/settings_creation.php" type="hidden">  -->
+				<div class="box-body">
+                	<p style="text-align: center;font-size: 17px;margin: 10px;font-weight: 700;">Login to your Application</p> 
+                        <div class="input-group" style="margin: 15px 14px;">
+                     	<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                     	<input class="form-control" placeholder="Email" id="email" name="email" required="required" value="" onkeyup="checkCredentials()" onload="checkCredentials()" type="text">
+                    	</div>
+                    	<input name="projectId" value="" type="hidden">    
+                     <div class="input-group" style="margin: 15px 14px;">
+                     	<span class="input-group-addon"><i class="fa fa-key"></i></span>
+                        <input class="form-control" placeholder="Password" id="password" name="password" required="required" value="" onkeyup="checkCredentials()" type="password">
+                     </div>
+                     {{message}}
+                     <!-- <span id="errorSpan">Please fill in the password again.</span>                 -->
+                     <div type="checkbox" class="checkbox" style="margin: 20px 14px;">  <label class=""> 
+                      	<span style="padding: 0px 0px 0px 5px;font-size: 15px;">Remember me</span> </label></div>
+						<button type="submit" id="loginButton" class="btn btn-primary" style="width: 92%;font-weight: bold;margin: 0px 14px;">Login</button>
+                     <div align="center">
+                     	
+				</div>
+				</form>                     
+             </div><!-- /.box-body -->
+	            <div class="box-footer" style="margin: 5px 15px 0 5px;padding: 0px 10px 32px 10px;">
+	                <span><a href="lost_pwd_html.php">Forgot Password?</a></span>
+	                  <span class="loginHelp pull-right"><a target="_blank" href="https://intercom.help/katerra-inc/login">Trouble logging in?</a> </span>       
+				</div>
+                                
+            </div><!-- box-primary -->
+        </div><!-- col-6 -->
+    </div><!-- container -->
+</div><!-- wrraper -->
+	
+    
+
+                                
+<style type="text/css">
+.icheckbox_minimal {
+    background-position: 0 0;
+}
+.icheckbox_minimal, .iradio_minimal {
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    width: 18px;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.7) url(../img/minimal.png) no-repeat;
+    border: none;
+    cursor: pointer;
+}
+element {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+    border: 0px none;
+    opacity: 0;
+}
+	.box.box-primary {
+    border-top-color: #3c8dbc;
+    overflow: hidden;
+}
+.box {
+    position: relative;
+    background: #ffffff;
+    margin-bottom: 20px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    width: 100%;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+element {
+    width: 92%;
+    font-weight: bold;
+    margin: 0px 14px;
+}
+a {
+    color: #f16621;
+}
+
+element {
+    width: 92%;
+    font-weight: bold;
+    margin: 0px 14px;
+}
+.btn.btn-primary {
+    background-color: #d3d3d3;
+    color: #333;
+    border: 0px;
+}
+.btn {
+    font-weight: 500;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #428bca;
+    border-color: #357ebd;
+}
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+</style>
