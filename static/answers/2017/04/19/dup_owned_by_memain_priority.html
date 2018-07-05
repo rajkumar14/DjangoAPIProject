@@ -1,0 +1,238 @@
+{% extends 'index.html' %}
+{% load common_tags %}
+<input type="hidden" name="agains" value="{{pko}}"></input>
+<div class="modal fade" id="myModal" role="dialog">
+   <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Modal Header</h4>
+         </div>
+         <div class="modal-body">
+            <form id="usecaseForm11" action = "/addusecase/" method ="post">
+               {% csrf_token %}
+               <textarea rows="5" cols="30"  name="descrip"placeholder="write description here..." required></textarea>
+               <div class="float-right">
+                  <button type="reset" class="btn btn-success" style="float:left;margin-top:20px">Cancel</button>
+               </div>
+               <div class="float-right">
+                  <input type="submit" id ="button1" class="btn btn-success" style="float:left;margin-top:20px" value="Submit">
+               </div>
+            </form>
+         </div>
+         <div class="modal-footer">
+         </div>
+      </div>
+   </div>
+</div>
+
+{% block rightcontent %}
+<input type="hidden" name="agains" value="{{pko}}"></input>{{pko}}
+{% if task %}
+<section class="content-header clearfix">
+   <div class="col-md-12 nopadding">
+      <span class="col-md-12">
+         <ol class="breadcrumb">
+            <li><a href="/my-tasks-owned/" class="h3">Other Tasks</a></li>
+            <li class="active"><a href="#" class="h3" data-toggle="tooltip" data-placement="bottom" title="{{ task.name }} ">{{ task.name|truncatewords:4 }} 
+               ({{ task.get_task_type_display}}) - {{ task.project.name }}</a>
+            </li>
+            {% if task.status.label == "Open" %}
+            <li><span class="label label-success" style="font-size: 14px;">{{task.status.label}}</span></li>
+            {% elif task.status.label == "Closed" %}
+            <li><span class="label label-danger" style="font-size: 14px;">{{task.status.label}}</span></li>
+            {% elif task.status.label == "In Review" %}
+            <li><span class="label label-info" style="font-size: 14px;">{{task.status.label}}</span></li>
+            {% elif task.status.label == "Stalled" %}
+            <li><span class="label label-warning" style="font-size: 14px;">{{task.status.label}}</span></li>
+            {% else %}
+            <li>N/A</li>
+            {% endif %}
+         </ol>
+      </span>
+   </div>
+</section>
+
+<section class="content clearfix">
+   <div class="col-md-12 form-horizonAdd Use casetal min-height620">
+   <form class="" id="myForm" role="form" method="POST">
+      {% csrf_token %}
+      <div class="col-md-12" style="text-align:right;">
+         <a href="/task-edit/LgeFl6l3dd+6b5Mg8gS/pg5dcM1KAgaP61o9BgS2r5s=/" class="btn btn-app"><i class="fa fa-edit"></i></a>
+      </div>
+      <div class="col-md-8 col-sm-8  description ">
+         <div class="form-group ">
+            {% get_hash_value task.id as hashval %}
+            {% if request.user.username == task.created.useFrname %}
+            {% if not task.status.label == "Closed" %}
+            <!--<a href="/task-edit/{{ hashval }}/" class="btn btn-app">
+               <i class="fa fa-edit"></i>
+               </a>-->
+            {% endif %}
+            {% endif %}
+            <div class="col-md-12 col-sm-12  description ">
+               <label class="col-sm-3">Description</label>
+               <div class="col-sm-9 ">
+                  <label class="text-left text-semibold" style="text-align: justify;" 
+                     data-toggle="tooltip" data-placement="bottom" title="{{ task.description }}">{{ task.description|truncatechars:280 }}</label>
+               </div>
+            </div>
+         </div>
+         <div class="form-group col-md-12 col-sm-12 ">
+            <label class=" col-sm-3">Total Hours</label>
+            <div class="col-sm-9 ">
+               <label class=" text-semibold">{{ task.num_of_hrs }}</label>
+            </div>
+         </div>
+         <div class="form-group col-md-12 col-sm-12">
+            <label class=" col-sm-3">Credits</label>
+            <div class="col-sm-9 ">
+               <label class=" text-semibold">{{ task.credit }}</label>
+            </div>
+         </div>
+         <div class="form-group col-md-12 col-sm-12">
+            <label class=" col-sm-3">Priority</label>
+            <div class="col-sm-9 ">
+               <label class=" text-semibold">{{ task.priority }}</label>
+            </div>
+         </div>
+         <div class="col-md-12 nopadding">
+            <div class="col-md-8 comment text-left nopadding" style="padding:0px;">
+               <label class="text-left col-sm-12 nopadding heading"  style="padding:0px;">View Comments :</label>
+               <div class="view-cmt">
+                  <div class="form-group ">
+                     {% for i in com %}
+                     <label class="col-sm-12">{{ i.comment_by.username }}<span class="cmt-time">
+                     {{ i.createdOn }}</span></label>
+                     <div class="col-md-12 ">
+                        <p>{{ i.comments }}</p>
+                     </div>
+                     {% endfor %}
+                  </div>
+               </div>
+               {% if not task.status.label == 'Closed' %}
+               {% if not task.status.label == 'Stalled' %}
+               <div class="col-md-12 col-sm-12  description ">
+                  <div class="form-group ">
+                     <label class="text-left col-sm-12 nopadding heading"></label>
+                     <!--label class="col-sm-2">Comment:</label-->
+                     <div class="form-group ">
+                        <div class="col-sm-12 padding-right00">
+                           <textarea id='comment' name = 'des' class="form-control" rows="3" placeholder="Write a descriptions.." required></textarea>
+                        </div>
+                     </div>
+                     <button type="submit" value="Comment" name="againcomment"  class="btn btn-success pull-right min-width100">Comment</button>
+                     <input type="submit" name="cmtclose" class="btn btn-danger pull-right min-width100" value="Comment & Close Task"/>
+                     <input type="submit" name="cmtstall" class="btn btn-danger pull-right min-width100" value="Comment & Stall Task"/>
+                     {% endif %}
+                     {% if task.status.label == 'In Review' or task.status.label == 'Stalled' %}
+                     <input type="submit" name="cmtreopen" class="btn btn-primary pull-right min-width100" value="Comment & Reopen Task"/>  
+                     {% endif %}
+                     {% endif %}
+                     {% if task.task_type == 'Bug' and task.status.label == 'Closed' %}
+                     <div class="reopen-btn">
+                        <input type="submit" name="reopen" class="btn btn-primary pull-right min-width100" value="Reopen Task"/>
+                     </div>
+                     {% endif %}
+                  </div>
+               </div>
+            </div>
+            <div class="clearfix edit-btn">
+               <div class="col-sm-offset-2 col-sm-10 nopadding">       
+               </div>
+            </div>
+         </div>
+      </div>
+   </form>
+   <div class="col-md-4">
+      <div class="width-accordion">
+         <div class="accordion-container">
+            <p class="accordion-header"  data-toggle="modal" data-target="#myModal">Use cases :</p>
+            <div class="accordion-content">
+            </div>
+         </div>
+      </div>
+      <div class=" nopadding">
+         <div class=" comment text-left nopadding" style="padding:0px;">
+            <label class="text-left  nopadding heading"  style="padding:0px;">Use cases</label>
+            <div class="view-cmt">
+               <div class="form-group ">
+                  {% for ii in use_cases %}
+                  <div class=" ">
+                     <br><br>
+                     <p title="Created By : {{ ii.created_by}}" >{{ ii.description }}</p>
+                  </div>
+                  <label class="" ><span class="cmt-time" >{{ ii.createdOn }}</span></label><br>
+                  {% if ii.description %}
+                  <a href="/delusecase/?vardelt={{ii.id}}&pk={{pko}}"><input type="button" value="Remove"/></a>
+                  <a href="/editusecase/?varedit={{ii.id}}&pk={{pko}}" data-toggle="modal" data-target="#myModal1"><input type="button" value="Edit" /></a>
+                  {% endif %}
+                  {% endfor %}
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+{% endif %}
+<!--link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto' rel='stylesheet' type='text/css'-->
+<link rel="stylesheet" href="/static/css/bootstrap.css">
+<script src="/static/js/jquery.min.js"></script> 
+<script src="/static/js/vallenato.js"></script>
+<!--script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
+<script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script-->
+<script>
+   jQuery.validator.setDefaults({
+     debug: true,
+     success: "valid"
+   });
+     $( "#myForm" ).validate({
+     rules: {
+       comment :{
+       required:true,
+       },
+     },
+     submitHandler: function(form) { 
+        form.submit(); 
+   },
+   });
+</script>
+<script>
+   $("#usecaseForm1").submit(function(e) {
+   //alert('ok')
+       var xy = "{{pk}}"
+       var urls = "/addusecase/?key="+xy; // the script where you handle the form input.
+   	alert(urls)
+       $.ajax({ 
+              type: "POST",
+              url: urls,
+              data: $("#usecaseForm1").serialize(), // serializes the form's elements.
+              success: function(data)
+              {
+                  alert(data); // show response from the php script.
+              }
+            });
+   
+       //e.preventDefault(); // avoid to execute the actual submit of the form.
+   });
+   
+</script>
+<script type="text/javascript">
+   $(document).ready(function() {
+       var oldVal = '';
+       $('.myTexbox').keypress(function (event) {
+           if (this.value.match("^[0-9]*[.,]?[0-9]{0,2}$"))
+               oldVal = this.value;
+       });
+        $('.myTexbox').keyup(function (event) {
+           if (!this.value.match("^[0-9]*[.,]?[0-9]{0,2}$")) {
+               $('.myTexbox').val(oldVal);   
+           }
+       });
+   });  
+   
+</script>
+{% endblock %}
+
+

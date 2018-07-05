@@ -9,22 +9,61 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<a style="align:right" href="/login/">Logout</a>
-<a href="/add-artical/">Add Artical </a>
-<table cellpadding="10px" cellspacing="5px" border="2px" padding="5px">
-	<tr>
-		<th>Id </th>
-		<th> Title </th>
-		<th> Author </th>
-		<th> Status </th>
-	</tr>
-	{% for i in artical %}
-	<tr>
-	<td>{{i.id}}</td>
-	<td>{{i.title}}</td>
-	<td>{{i.author.name}}</td>
-	<td><a href="/edit-artical/{{i.id}}">Edit</a></td>
-	</tr>
-	{% endfor %}
-	
-</table>
+<section class="col-lg-12 table-view  ">
+<div class="add-sec">
+	<a href="/csv-download/">
+	<input type="button" class="btn btn-success pull-right" value="Export CSV"></a> 	
+	<a href="/upload_csv/">
+	<input type="button" class="btn btn-success pull-right" value="Import CSV"></a> 	
+	<a href="/add-artical/">
+	<input type="button" class="btn btn-success pull-right min-width100" value="Add Artical"></a>  
+ </div>
+<div class="add-sec">
+</div>
+
+<table class="table table-bordered table-responsive ">
+	<div class="add-sec"></div>
+	    <thead>
+	      <tr class="table-header">
+	        <th>Id</th>
+	        <th>Title</th>
+	        <th>Author</th>
+	        <th>Status</th>
+	      </tr>
+	    </thead>
+
+    <tbody>
+    {% for i in artical %}
+      <tr>
+        <td>{{i.id}}</td>
+        <td>{{i.title|capfirst}}</td>
+        <td>{{i.author.name}}</td>
+		<td><a href="/view-deatils/{{i.id}}/" class="btn btn-success" >View details </button></a> |
+		<a href="/edit-artical/{{i.id}}" class="btn btn-success " >Edit </button></a>
+		</td>
+
+      </tr>
+     {% endfor %}
+    </tbody	>
+  </table>
+</section>
+	<div class="clear"> </div>
+	<ul class="dc_pagination dc_paginationA dc_paginationA03">
+    <span class="step-links">
+        {% if artical.has_previous %}
+            <a href="?page={{ artical.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ artical.number }} of {{ artical.paginator.num_pages }}.
+        </span>
+
+        {% if artical.has_next %}
+            <a href="?page={{ artical.next_page_number }}">Next</a>
+        {% endif %}
+	</span>
+				  
+	</ul>
+	<div class="clear"> </div>
+	</div>
+</div>

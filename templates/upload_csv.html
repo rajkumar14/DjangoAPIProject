@@ -1,0 +1,44 @@
+<h2> Upload Multiple Data </h2>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<form  class="file_upload" method="post" enctype="multipart/form-data" class="form-horizontal"> 
+{% csrf_token %}
+<div class="form-group">
+	<div class="col-sm-12">
+	    <label for="name" class="col-md-3 col-sm-3 col-xs-12 control-label">File: </label>
+	    <div class="col-md-8">
+	        <input type="file" name="csv_file" id="csv_file">
+	    </div> 
+    </div>                   
+</div>
+<div class="form-group">
+	<div class="col-sm-12">                    
+	    <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3" style="margin-bottom:10px;">
+	         <button class="btn btn-primary"> <span class="glyphicon glyphicon-upload" style="margin-right:5px;"></span>Upload </button>
+	    </div>
+    </div> 
+</div>
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.validate.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $(".file_upload").validate({
+            rules :
+            {
+                csv_file : {required:true},
+            },
+            messages:
+            {
+	            csv_file : {required : "Please upload file here"},
+            }
+        });
+    });
+    </script>
+<style type="text/css">
+  .error{color:red; min-width: 50px;}
+	p    {color: red;}
+</style>

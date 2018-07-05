@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>LOGIN Page</title>
+<meta name="description" content="">
+<meta name="viewport"  content="width=device-width, initial-scale=1, user-scalable=no">
+<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/css/bootstrap.css">
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+<div>
+ <div class="login-bg">
+  <div class="circle-bg"><img src="/static/images/logo.png"></div>
+   <div class="login-head"><h3>LOGIN</h3></div>
+   {% if msg %}
+        <h5><span style="color:red">{{ msg }}</span></h5>
+        
+        {% else %}
+        
+        Please login with your Username and Password.
+    {% endif%}
+     <div class="contact" id ="loginform"">
+     
+       <div class="heading">
+       <form  action ="." method="post" id="loginform">{% csrf_token %} 
+        <div class="login-user">
+      <fa class="fa fa-user"></fa>
+          <input type="hidden" name="next" value="{{ next }}">
+            <input  placeholder="User Name" name="username" value="{{ username}}"  class="user-name user-logo-img" type="text" style="float:left" > 
+            
+          <input  placeholder="Password" type="password" name="password" value="" style="float:left" class="user-password-img" >
+
+           <ul class="user-wrapper">
+
+             <li>Sign in &nbsp; &nbsp;|</li> 
+            <li>&nbsp; &nbsp;Forgot Password</li>
+
+                   <li><input type="submit" class="user-login" value="Login" style="outline:0px;"/></li>
+                   <li style="float:right"><u><a href="/forget-pass/"   style=" margin: 5px 5px 15px"/>Forget password..?</a><u></li>
+            </ul>
+            
+       </div>
+      </form>
+    </div>                
+  </div>
+ </div>
+ <div class="bottom-bar">
+ <img src="/static/images/bottom-bar.jpg" style="width:100%;margin-top:8%;">
+    </div>
+</div>
+
+<script src="/static/js/jquery.min.js"></script> 
+<script src="/static/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="/static/js/jquery.validate.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#loginform").validate({
+        //alert('ok')
+            rules : 
+                    { 
+                        username: {required: true }, 
+                        password:{required: true}, 
+                    }, 
+          messages:
+                    {
+                    username : {required : "Please enter the username"},
+                    password : {required : "Please enter the password"},
+                    }
+                
+        });
+    });
+</script>
+
+
+</body>
+</html>

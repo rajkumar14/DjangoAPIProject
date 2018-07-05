@@ -20,12 +20,16 @@ from myapp.feeds_views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$',Homepage, name='homepage'),
     url(r'^login/$',Login,name='login'),
     url(r'^logout/$',Logout,name='logout'),    
     url(r'^page/$',Home,name='page'),
     url(r'^list/$',ListPage,name='list'),
     url(r'^add-artical/$',AddPage,name='add-artical'),
-    url(r'^edit-artical/(?P<pk>\d+)/$',EditPage,name='edit-artical'),
+    url(r'^edit-artical/(?P<pk>\d+)/$',EditPage,name='edit_artical'),
+    url(r'^view-deatils/(?P<pk>\d+)/$',ViewPage,name='view_deatils'),
     url(r'^student/$', StudentList.as_view()),
     url(r'^student/(?P<pk>[0-9]+)/$', StudentDetails.as_view()),
+    url(r'^csv-download/$',export_aritcaldata,name='csv_download'),
+    url(r'^upload_csv/$', upload_csv, name='upload_csv'),
 ]

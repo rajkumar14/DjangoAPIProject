@@ -5,11 +5,9 @@
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
                                 
-                                <!-- form start -->
+<!-- form start -->
 <div class="pace  pace-inactive">
 	<div data-progress="99" data-progress-text="100%" style="width: 100%;" class="pace-progress">
  		<div class="pace-progress-inner"></div>
@@ -22,18 +20,17 @@
 			<div class="col-md-12" style="margin: 140px 0 0 0;">
 				<div class="box box-primary">
             	   <!-- form start -->
-				<form role="form" name="login_form" id="login_form" method="post" action="">{% csrf_token %}
-					<!-- <input name="return" value="/Katerra/configurations/settings_creation.php" type="hidden">  -->
+				<form class="login-form" method="post">{% csrf_token %}
 				<div class="box-body">
                 	<p style="text-align: center;font-size: 17px;margin: 10px;font-weight: 700;">Login to your Application</p> 
                         <div class="input-group" style="margin: 15px 14px;">
                      	<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                     	<input class="form-control" placeholder="Email" id="email" name="email" required="required" value="" onkeyup="checkCredentials()" onload="checkCredentials()" type="text">
+                     	<input class="form-control" placeholder="Email" id="email" name="email" type="text">
                     	</div>
                     	<input name="projectId" value="" type="hidden">    
                      <div class="input-group" style="margin: 15px 14px;">
                      	<span class="input-group-addon"><i class="fa fa-key"></i></span>
-                        <input class="form-control" placeholder="Password" id="password" name="password" required="required" value="" onkeyup="checkCredentials()" type="password">
+                        <input class="form-control" placeholder="Password" id="password" name="password" type="password">
                      </div>
                      {{message}}
                      <!-- <span id="errorSpan">Please fill in the password again.</span>                 -->
@@ -47,7 +44,7 @@
              </div><!-- /.box-body -->
 	            <div class="box-footer" style="margin: 5px 15px 0 5px;padding: 0px 10px 32px 10px;">
 	                <span><a href="lost_pwd_html.php">Forgot Password?</a></span>
-	                  <span class="loginHelp pull-right"><a target="_blank" href="https://intercom.help/katerra-inc/login">Trouble logging in?</a> </span>       
+	                      
 				</div>
                                 
             </div><!-- box-primary -->
@@ -55,8 +52,30 @@
     </div><!-- container -->
 </div><!-- wrraper -->
 	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.validate.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $(".login-form").validate({
+            rules :
+            {
+                email : {required:true},
+                password : {required:true},
+            },
+            messages:
+            {
+            email : {required : "Please enter the username"},
+            password : {required : "Please enter the password"},
+            }
+        });
+    });
+    </script>
     
 
+<style>
+.error{color:red; min-width: 50px;}
+p    {color: red;}
+</style>
                                 
 <style type="text/css">
 .icheckbox_minimal {

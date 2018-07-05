@@ -1,0 +1,5 @@
+.filter-button button {background:red;color:#fff;}
+.main-header .logo .logo-lg:focus, .main-header .logo .logo-lg:hover {color: #fff;}
+.sub-menu-bg{background:#ff0000; color:#fff; }
+.sidebar-submenu li a:focus, .sidebar-submenu li a:hover{color:#fff}
+.sub-sub-menu a:focus, .sub-sub-menu a:hover {color: #ff0000 !important;}
